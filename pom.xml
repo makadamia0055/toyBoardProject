@@ -122,6 +122,13 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.3.13.Final</version>
         </dependency>
+        <!-- mysql-connector-java 의존성 추가 -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.11</version>
+		</dependency>
+		
 		     
 	</dependencies>
     <build>
