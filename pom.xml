@@ -115,7 +115,14 @@
 		    <artifactId>junit-jupiter-api</artifactId>
 		    <version>5.7.1</version>
 		    <scope>test</scope>
-		</dependency>       
+		</dependency>  
+		<!-- jpa-->
+		<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.3.13.Final</version>
+        </dependency>
+		     
 	</dependencies>
     <build>
         <plugins>
