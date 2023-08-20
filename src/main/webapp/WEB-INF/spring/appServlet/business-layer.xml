@@ -12,13 +12,14 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 컴포넌트 스캔 코드. -->
 	<context:component-scan base-package="com.ppl.toyboard.root" />
 	
 	<!-- properties 파일 등록 -->
 	<context:property-placeholder location="classpath:properties/database.properties"/>
 	
 	<!-- aop 등록 -->
-	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	<!-- dataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -31,4 +32,21 @@
 	
 	<!-- 트랜잭션 설정 -->
 	<tx:annotation-driven/>
+	
+	<!-- jpa 오류 변환기 등록 -->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+	<!-- jpa VendorAdapter 등록 -->
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"></property>
+	</bean>
+	
+	<!-- aop 포인트컷 등록 -->
+	<!-- <aop:config>
+		<aop:pointcut expression="execution(* com.ppl.toyboard.root.service..*(..))" id="allPointcut"/>
+	
+	</aop:config> -->
+	
 </beans>
