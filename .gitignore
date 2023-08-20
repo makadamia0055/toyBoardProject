@@ -10,6 +10,9 @@ pom.properties
 .classpath
 MANIFEST.MF
 
+### properties ###
+/src/main/resources/properties/
+
 ### Eclipse ###
 .metadata
 bin/

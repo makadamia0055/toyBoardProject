@@ -16,10 +16,12 @@
 	<context:component-scan base-package="com.ppl.toyboard.root" />
 	
 	<!-- properties 파일 등록 -->
-	<context:property-placeholder location="classpath:properties/database.properties"/>
+	<context:property-placeholder location="classpath:properties/db.properties"/>
 	
-	<!-- aop 등록 -->
+	<!-- aop 스캔 등록 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+
 	
 	<!-- dataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -29,6 +31,8 @@
 		<property name="username" value="${jdbc.username}"/>
 		<property name="password" value="${jdbc.password}"/>
 	</bean>
+	
+	
 	
 	<!-- 트랜잭션 설정 -->
 	<tx:annotation-driven/>
@@ -40,7 +44,9 @@
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
-		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"></property>
+ 		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"></property>
+		<property name="packagesToScan" value="com.ppl.toyboard.root.vo"></property>
+		
 	</bean>
 	
 	<!-- aop 포인트컷 등록 -->
@@ -48,5 +54,11 @@
 		<aop:pointcut expression="execution(* com.ppl.toyboard.root.service..*(..))" id="allPointcut"/>
 	
 	</aop:config> -->
+	
+	<!-- Transcation 설정 -->
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
+	
+	</bean>
 	
 </beans>
