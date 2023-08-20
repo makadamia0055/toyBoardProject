@@ -1,4 +1,4 @@
-package com.ppl.toyboard.vo;
+package com.ppl.toyboard.root.vo;
 
 import java.util.Date;
 
