@@ -5,13 +5,15 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="cm_boardcomment")
-public class BoardCommentVO {
+@Table(name="cm_comment")
+public class CommentVO {
 	@Id
 	@GeneratedValue
 	private int cm_num;
@@ -19,5 +21,10 @@ public class BoardCommentVO {
 	private Date cm_date;
 	private String cm_content;
 	private int cm_state;
-	
+	@ManyToOne
+	@JoinColumn(name="cm_bo_num")
+	private BoardVO board;
+	@ManyToOne
+	@JoinColumn(name="cm_us_id")
+	private UserVO user;
 }
