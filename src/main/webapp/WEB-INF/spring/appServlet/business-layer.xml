@@ -55,7 +55,7 @@
 	
 	</aop:config> -->
 	
-	<!-- Transcation 설정 -->
+	<!-- Transaction 설정 -->
 	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	
