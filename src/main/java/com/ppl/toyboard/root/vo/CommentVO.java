@@ -11,8 +11,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name="cm_comment")
+@Data
+@NoArgsConstructor
 public class CommentVO {
 	@Id
 	@GeneratedValue

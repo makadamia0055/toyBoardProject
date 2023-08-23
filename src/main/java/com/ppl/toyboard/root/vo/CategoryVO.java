@@ -8,8 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
-@Table(name="ct_category")
+@Table(name = "ct_category")
+@Data
+@NoArgsConstructor
 public class CategoryVO {
 	@Id
 	@GeneratedValue

@@ -13,8 +13,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name="bo_board")
+@Data
+@NoArgsConstructor
 public class BoardVO {
 	@Id
 	@GeneratedValue

@@ -7,8 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name="us_user")
+@Data
+@NoArgsConstructor
 public class UserVO {
 	@Id
 	private String us_id;
