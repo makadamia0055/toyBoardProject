@@ -1,6 +1,6 @@
 package com.ppl.toyboard.root.vo;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -39,22 +39,21 @@ public class BoardVO {
 	private CategoryVO category;
 	
 	@OneToMany(mappedBy = "board")
-	private ArrayList<BoardFilesVO> boardFilesList;
+	private List<BoardFilesVO> boardFilesList;
 	
 	@OneToMany(mappedBy = "board")
-	private ArrayList<BoardVoteVO> boardVoteList;
+	private List<BoardVoteVO> boardVoteList;
 	
 	@OneToMany(mappedBy = "board")
-	private ArrayList<BoardTagsVO> boardTagsList;
+	private List<BoardTagsVO> boardTagsList;
 	
 	@OneToMany(mappedBy = "board")
-	private ArrayList<CommentVO> commentList;
+	private List<CommentVO> commentList;
 	
 	public void setUser(UserVO user) {
-		if(this.user==null) {
-			this.user = user;
-			user.getBoardList().add(this);
-		}
+		this.user = user;
+		user.getBoardList().add(this);
+		
 	}
 	
 	public void setCategory(CategoryVO category) {

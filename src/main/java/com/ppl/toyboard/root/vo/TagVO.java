@@ -1,6 +1,6 @@
 package com.ppl.toyboard.root.vo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,5 +21,5 @@ public class TagVO {
 	private int tg_tagnum;
 	private String tg_tagname;
 	@OneToMany(mappedBy = "tag")
-	private ArrayList<BoardTagsVO> boardTagsList;
+	private List<BoardTagsVO> boardTagsList;
 }

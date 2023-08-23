@@ -1,6 +1,6 @@
 package com.ppl.toyboard.root.vo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,11 +22,11 @@ public class UserVO {
 	private int us_auth;
 	
 	@OneToMany(mappedBy = "user")
-	private ArrayList<BoardVO> boardList;
+	private List<BoardVO> boardList;
 	
 	@OneToMany(mappedBy = "user")
-	private ArrayList<CommentVO> commentList;
+	private List<CommentVO> commentList;
 	
 	@OneToMany(mappedBy = "user")
-	private ArrayList<BoardVoteVO> boardVoteList; 
+	private List<BoardVoteVO> boardVoteList; 
 }

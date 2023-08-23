@@ -1,6 +1,6 @@
 package com.ppl.toyboard.root.vo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,5 +22,5 @@ public class CategoryVO {
 	private String ct_name;
 
 	@OneToMany(mappedBy = "category")
-	private ArrayList<BoardVO> boardList;
+	private List<BoardVO> boardList;
 }
