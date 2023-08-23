@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name="bf_boardfiles")
 public class BoardFilesVO {
@@ -15,6 +17,7 @@ public class BoardFilesVO {
 	private int bf_num;
 	private String bf_fileurl;
 	private String bf_ori_filename;
+	
 	@ManyToOne
 	@JoinColumn(name="bf_bo_num")
 	private BoardVO board;

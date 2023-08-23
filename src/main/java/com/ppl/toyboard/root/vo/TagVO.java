@@ -9,13 +9,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ct_category")
-public class CategoryVO {
+@Table(name="tg_tag")
+public class TagVO {
 	@Id
 	@GeneratedValue
-	private int ct_num;
-	private String ct_name;
-
-	@OneToMany(mappedBy = "category")
-	private ArrayList<BoardVO> boardList;
+	private int tg_tagnum;
+	private String tg_tagname;
+	@OneToMany(mappedBy = "tag")
+	private ArrayList<BoardTagsVO> boardTagList;
 }

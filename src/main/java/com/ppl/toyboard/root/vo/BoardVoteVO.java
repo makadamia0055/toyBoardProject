@@ -14,8 +14,12 @@ public class BoardVoteVO {
 	@GeneratedValue
 	private int bv_num;
 	private boolean bv_state;
+	
 	@ManyToOne
 	@JoinColumn(name="bv_bo_num")
 	private BoardVO board;
 	
+	@ManyToOne
+	@JoinColumn(name="bv_us_id")
+	private UserVO user;
 }
