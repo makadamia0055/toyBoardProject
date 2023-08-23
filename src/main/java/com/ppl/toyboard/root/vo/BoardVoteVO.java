@@ -27,4 +27,14 @@ public class BoardVoteVO {
 	@ManyToOne
 	@JoinColumn(name="bv_us_id")
 	private UserVO user;
+	
+	public void setBoard(BoardVO board) {
+		this.board = board;
+		board.getBoardVoteList().add(this);
+	}
+	
+	public void setUser(UserVO user) {
+		this.user = user;
+		user.getBoardVoteList().add(this);
+	}
 }

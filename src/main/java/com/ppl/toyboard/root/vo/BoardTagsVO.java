@@ -24,4 +24,13 @@ public class BoardTagsVO {
 	@ManyToOne
 	@JoinColumn(name="bt_tg_tagnum")	
 	private TagVO tag;
+	
+	public void setBoard(BoardVO board) {
+		this.board = board;
+		board.getBoardTagsList().add(this);
+	}
+	public void setTag(TagVO tag) {
+		this.tag = tag;
+		tag.getBoardTagsList().add(this);
+	}
 }

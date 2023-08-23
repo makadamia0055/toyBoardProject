@@ -26,10 +26,22 @@ public class CommentVO {
 	private Date cm_date;
 	private String cm_content;
 	private int cm_state;
+	
 	@ManyToOne
 	@JoinColumn(name="cm_bo_num")
 	private BoardVO board;
+	
 	@ManyToOne
 	@JoinColumn(name="cm_us_id")
 	private UserVO user;
+	
+	public void setBoard(BoardVO board) {
+		this.board = board;
+		board.getCommentList().add(this);
+	}
+	
+	public void setUser(UserVO user) {
+		this.user = user;
+		user.getCommentList().add(this);
+	}
 }

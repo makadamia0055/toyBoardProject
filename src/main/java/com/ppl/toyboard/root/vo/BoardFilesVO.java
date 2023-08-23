@@ -24,4 +24,10 @@ public class BoardFilesVO {
 	@ManyToOne
 	@JoinColumn(name="bf_bo_num")
 	private BoardVO board;
+	
+	public void setBoard(BoardVO board) {
+		// 일단 향후 로직을 어떻게 짤지 몰라서 일단 여기는 기본적인 코드만
+		this.board = board;
+		board.getBoardFilesList().add(this);
+	}
 }

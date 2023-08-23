@@ -45,6 +45,24 @@ public class BoardVO {
 	private ArrayList<BoardVoteVO> boardVoteList;
 	
 	@OneToMany(mappedBy = "board")
-	private ArrayList<BoardTagsVO> boardTagList;
+	private ArrayList<BoardTagsVO> boardTagsList;
+	
+	@OneToMany(mappedBy = "board")
+	private ArrayList<CommentVO> commentList;
+	
+	public void setUser(UserVO user) {
+		if(this.user==null) {
+			this.user = user;
+			user.getBoardList().add(this);
+		}
+	}
+	
+	public void setCategory(CategoryVO category) {
+		if(this.category!=null)
+			this.category.getBoardList().remove(this);
+		this.category = category;
+		category.getBoardList().add(this);
+		
+	}
 	
 }
