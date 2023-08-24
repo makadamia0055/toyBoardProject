@@ -15,12 +15,28 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- 뷰 Resolver -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
+	<!-- 템플릿 엔진 -->
+	<beans:bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+		<beans:property name="prefix" value="/WEB-INF/templates/" />
+		<beans:property name="suffix" value=".html" />
+		<beans:property name="templateMode" value="HTML" />
+		<!-- 페이지 캐쉬 설정(개발 중에는 false로) -->
+		<beans:property name="cacheable" value="false" />
+		
+	</beans:bean>
+	<beans:bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+		<beans:property name="templateResolver" ref="templateResolver" />
+		<beans:property name="enableSpringELCompiler" value="true"/>
 	</beans:bean>
 	
+	<!-- 뷰 Resolver -->
+	<beans:bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+	  <beans:property name="templateEngine" ref="templateEngine" />
+	  <!-- NOTE 'order' and 'viewNames' are optional -->
+	  <beans:property name="order" value="1" />
+	  <beans:property name="viewNames" value="*.html,*.xhtml" />
+	</beans:bean>
+		
 	<context:component-scan base-package="com.ppl.toyboard.controller" />
 	
 	
