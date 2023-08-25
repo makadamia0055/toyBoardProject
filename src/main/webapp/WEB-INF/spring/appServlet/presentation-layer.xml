@@ -20,6 +20,7 @@
 		<beans:property name="prefix" value="/WEB-INF/templates/" />
 		<beans:property name="suffix" value=".html" />
 		<beans:property name="templateMode" value="HTML" />
+		
 		<!-- 페이지 캐쉬 설정(개발 중에는 false로) -->
 		<beans:property name="cacheable" value="false" />
 		
@@ -35,6 +36,8 @@
 	  <!-- NOTE 'order' and 'viewNames' are optional -->
 	  <beans:property name="order" value="1" />
 	  <beans:property name="viewNames" value="*.html,*.xhtml" />
+	  <beans:property name="characterEncoding" value="UTF-8" />
+	  
 	</beans:bean>
 		
 	<context:component-scan base-package="com.ppl.toyboard.controller" />

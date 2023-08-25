@@ -28,7 +28,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 인코딩 필터 등록 -->
+	<!-- 인코딩 필터 등록 코드였는데 request만 적용하고 response는 타임리프 뷰리졸버에서 하부 속성으로 인코딩 관리함. -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -37,7 +37,11 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 		<init-param>
-			<param-name>forceEncoding</param-name>
+			<param-name>forceRequestEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceResponseEncoding</param-name>
 			<param-value>false</param-value>
 		</init-param>
 	</filter>
