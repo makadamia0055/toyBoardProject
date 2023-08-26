@@ -11,7 +11,7 @@ import com.ppl.toyboard.root.service.LoginService;
 import com.ppl.toyboard.root.vo.UserVO;
 
 @Controller
-@RequestMapping(value="/login")
+@RequestMapping(value="/user")
 public class LoginController {
 	private LoginService loginService;
 	
@@ -21,11 +21,11 @@ public class LoginController {
 	}
 	
 	
-	@GetMapping()
+	@GetMapping(path = "/login")
 	public String getLogin(Model model) {
-	    return "login/loginPage.html";
+	    return "user/loginPage.html";
 	}
-	@PostMapping()
+	@PostMapping(path="/login")
 	public String postLogin(UserVO user) {
 		if(loginService.checkUser(user)) {
 			System.out.println("로그인 체크 성공");
@@ -36,7 +36,7 @@ public class LoginController {
 	
 	@GetMapping(path="/register")
 	public String getRegister(Model model) {
-	    return "login/registerPage.html";
+	    return "user/registerPage.html";
 	}
 	@PostMapping(path="/register")
 	public String postRegister(UserVO user) {
