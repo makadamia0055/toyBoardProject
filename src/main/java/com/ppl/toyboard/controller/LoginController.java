@@ -27,9 +27,24 @@ public class LoginController {
 	}
 	@PostMapping()
 	public String postLogin(UserVO user) {
-		if(loginService.checkUserVO(user)) {
+		if(loginService.checkUser(user)) {
+			System.out.println("로그인 체크 성공");
 			return "redirect:/";
 		}
+		return "redirect:/";
+	}
+	
+	@GetMapping(path="/register")
+	public String getRegister(Model model) {
+	    return "login/registerPage.html";
+	}
+	@PostMapping(path="/register")
+	public String postRegister(UserVO user) {
+		if(loginService.insertUser(user)) {
+			System.out.println("회원가입  성공");
+			return "redirect:/";
+		}
+		System.out.println("회원가입 실패");
 		return "redirect:/";
 	}
 	

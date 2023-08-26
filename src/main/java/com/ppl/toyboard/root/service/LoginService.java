@@ -4,8 +4,10 @@ import com.ppl.toyboard.root.vo.UserVO;
 
 public interface LoginService {
 
-	boolean checkUserVO(UserVO user);
+	boolean checkUser(UserVO user);
 	
-	void insertUser(UserVO user);
+	boolean insertUser(UserVO user);
+
+	UserVO getUser(UserVO user);
 
 }
