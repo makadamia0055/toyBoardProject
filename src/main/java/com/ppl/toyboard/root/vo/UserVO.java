@@ -1,6 +1,7 @@
 package com.ppl.toyboard.root.vo;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,5 +29,20 @@ public class UserVO {
 	private List<CommentVO> commentList;
 	
 	@OneToMany(mappedBy = "user")
-	private List<BoardVoteVO> boardVoteList; 
+	private List<BoardVoteVO> boardVoteList;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserVO other = (UserVO) obj;
+		return Objects.equals(us_id, other.us_id) && Objects.equals(us_pw, other.us_pw);
+	}
+
+	
+	
 }
