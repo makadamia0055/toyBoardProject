@@ -182,7 +182,14 @@
 		    <artifactId>thymeleaf-spring5</artifactId>
 		    <version>3.0.15.RELEASE</version>
 		</dependency>
-		     
+		<!-- jwt 관련 의존성 -->
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt-root</artifactId>
+		    <version>0.11.5</version>
+		    <type>pom</type>
+		</dependency>
+
 	</dependencies>
 	<!-- junit 의존성 버전관리 -->
 	<dependencyManagement>
