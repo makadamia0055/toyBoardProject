@@ -115,12 +115,24 @@
 		</dependency>
 	
 		<!-- Test -->
+		 <dependency>
+	        <groupId>org.junit.platform</groupId>
+	        <artifactId>junit-platform-launcher</artifactId>
+	        <scope>test</scope>
+	        <version>1.4.0</version>
+	        
+	    </dependency>
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-api</artifactId>
-		    <version>5.7.1</version>
 		    <scope>test</scope>
-		</dependency>  
+		</dependency>
+		 <!-- JUnit 3,4 버전을 사용하지 않으면 세팅하지 않아도 된다. -->
+	    <dependency>
+	        <groupId>org.junit.vintage</groupId>
+	        <artifactId>junit-vintage-engine</artifactId>
+	        <scope>test</scope>
+	    </dependency>  
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-test</artifactId>
@@ -172,6 +184,18 @@
 		</dependency>
 		     
 	</dependencies>
+	<!-- junit 의존성 버전관리 -->
+	<dependencyManagement>
+	    <dependencies>
+	        <dependency>
+	            <groupId>org.junit</groupId>
+	            <artifactId>junit-bom</artifactId>
+	            <version>5.10.0</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	    </dependencies>
+	</dependencyManagement>
     <build>
         <plugins>
             <plugin>
@@ -208,6 +232,16 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            <!-- 메이븐 junit5 관련 플러그인 -->
+            <plugin>
+	            <artifactId>maven-surefire-plugin</artifactId>
+	            <version>3.1.2</version>
+	        </plugin>
+	        <plugin>
+	            <artifactId>maven-failsafe-plugin</artifactId>
+	            <version>3.1.2</version>
+	        </plugin>
+            
         </plugins>
     </build>
 </project>
