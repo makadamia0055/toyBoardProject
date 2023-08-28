@@ -41,4 +41,15 @@ public class LoginServiceImp implements LoginService {
 		return false;
 	}
 
+	@Override
+	public void deleteAllUser() {
+		loginDao.deleteAllUser();
+		
+	}
+
+	@Override
+	public int countAllUser() {
+		return loginDao.countAllUser();
+	}
+
 }

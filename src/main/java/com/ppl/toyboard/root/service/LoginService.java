@@ -10,4 +10,7 @@ public interface LoginService {
 
 	UserVO getUser(UserVO user);
 
+	void deleteAllUser();
+	
+	int countAllUser();
 }
