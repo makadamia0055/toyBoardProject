@@ -35,7 +35,7 @@ class LoginServiceImpTest {
 		
 	}
 	@BeforeEach
-	void À¯Àú2ÇÊµå¼³Á¤() {
+	void í…ŒìŠ¤íŠ¸ê°ì²´ìƒì„±() {
 		this.user2 = new UserVO();
 		user2.setUs_id("mak123id");
 		user2.setUs_pw("mak123pw");
@@ -81,7 +81,7 @@ class LoginServiceImpTest {
 	}
 	
 	@Test
-	void Ä«¿îÆ®¸ğµçÀ¯Àú() {
+	void ì¹´ìš´íŠ¸ë©”ì„œë“œí…ŒìŠ¤íŠ¸() {
 		//given
 		int cnt = loginService.countAllUser();
 		
