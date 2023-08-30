@@ -1,17 +1,17 @@
 package com.ppl.toyboard.root.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import com.ppl.toyboard.root.vo.UserVO;
 
-@Transactional
+
 @Repository
 public class LoginDAOJpa implements LoginDAO {
 	@PersistenceContext
@@ -20,6 +20,7 @@ public class LoginDAOJpa implements LoginDAO {
 	/**
 	 * 
 	 */
+	@Transactional
 	@Override
 	public UserVO getUser(UserVO user) {
 		return (UserVO) em.find(UserVO.class, user.getUs_id());
@@ -27,10 +28,12 @@ public class LoginDAOJpa implements LoginDAO {
 	/**
 	 * 
 	 */
+	@Transactional
 	@Override
 	public void insertUser(UserVO user) {
 		em.persist(user);
 	}
+	@Transactional
 	@Override
 	public void deleteAllUser() {
 		List<UserVO> list = getAllUser();
@@ -38,11 +41,13 @@ public class LoginDAOJpa implements LoginDAO {
 			em.remove(tmp);
 		}
 	}
+	@Transactional
 	@Override
 	public int countAllUser() {
 		List<UserVO> list = getAllUser();
 		return list.size();
 	}
+	@Transactional
 	@Override
 	public List<UserVO> getAllUser() {
 		String jpql = "select u from UserVO u order by u.us_id desc";

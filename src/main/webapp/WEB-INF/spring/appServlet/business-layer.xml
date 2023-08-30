@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 컴포넌트 스캔 코드. -->
 	<context:component-scan base-package="com.ppl.toyboard.root" />
 	
 	<!-- properties 파일 등록 -->
-	<context:property-placeholder location="classpath:properties/db.properties"/>
-	<context:property-placeholder location="classpath:properties/redis.properties"/>
+	<context:property-placeholder location="classpath:properties/*.properties"/>
 	
 	
 	<!-- aop 스캔 등록 -->
@@ -34,7 +33,11 @@
 		<property name="password" value="${jdbc.password}"/>
 	</bean>
 	
-	
+	<mvc:annotation-driven>
+	   <mvc:message-converters>
+	       <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	   </mvc:message-converters>
+	</mvc:annotation-driven>
 	
 	<!-- 트랜잭션 설정 -->
 	<tx:annotation-driven/>
@@ -58,23 +61,32 @@
 	</aop:config>
 	
 	<!-- Transaction 설정 -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	
 	</bean>
 	
-	<bean id="redisConfiguration" class="org.springframework.data.redis.connection.RedisStandaloneConfiguration">
-		<property name="hostName" value="${redis.hostName}" />
-		<property name="port" value="${redis.port}" />
-	</bean>
-	
-	<bean id="lettuceConnectionFactory" class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory">
-		<constructor-arg name="configuration" ref="redisConfiguration"/>
+	<!-- redis설정 -->
+	<bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory">
+		<constructor-arg>
+			<bean class="org.springframework.data.redis.connection.RedisStandaloneConfiguration">
+				<property name="hostName" value="localhost" />
+            	<property name="port" value="6379" />
+			</bean>
+		
+		</constructor-arg>
 	</bean>
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
-		<property name="connectionFactory" ref="lettuceConnectionFactory" />
+		<property name="connectionFactory" ref="redisConnectionFactory" />
+	</bean> 
+	<bean class="org.springframework.data.redis.repository.support.RedisRepositoryFactoryBean">
+		<constructor-arg name="repositoryInterface" value="com.ppl.toyboard.root.dao.RedisDAO"/>
+	
 	</bean>
+	
 	<!-- 캐시 매니저 설정은 나중에 -->
+	
+
 	
 	
 </beans>
