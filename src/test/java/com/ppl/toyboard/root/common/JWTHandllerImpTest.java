@@ -3,14 +3,14 @@ package com.ppl.toyboard.root.common;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.security.Key;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.crypto.SecretKey;
-
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import io.jsonwebtoken.Claims;
@@ -20,9 +20,44 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 class JWTHandllerImpTest {
+	private static Key key;
+	private static String encodedKey;
+	
+	
+	@BeforeAll
+	static void ì‹œí¬ë¦¿í‚¤ë§Œë“¤ê¸°() {
+		key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+		encodedKey = Base64.getEncoder().encodeToString(key.getEncoded());
 
+	}
+	
 	@Test
-	void JWT¸¸µå´ÂÅ×½ºÆ®() {
+	void GPTTestCase() {
+		
+	        // Create a JWT
+	        String jwt = Jwts.builder()
+	            .setSubject("user123")
+	            .claim("role", "admin")
+	            .signWith(key)
+	            .compact();
+
+	        // Parse the JWT
+	        Claims claims = Jwts.parserBuilder()
+	            .setSigningKey(Base64.getDecoder().decode(encodedKey))
+	            .build()
+	            .parseClaimsJws(jwt)
+	            .getBody();
+
+	        String subject = claims.getSubject();
+	        String role = (String) claims.get("role");
+
+	        System.out.println("Subject: " + subject);
+	        System.out.println("Role: " + role);
+	}
+	
+	
+	@Test
+	void JWTë§Œë“œëŠ”í…ŒìŠ¤íŠ¸() {
 		// given
 		String issuer = "ppl";
 		String subject = "Auth";
@@ -33,7 +68,6 @@ class JWTHandllerImpTest {
 		String jwtId = UUID.randomUUID().toString();
 		
 		//when
-		SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 		
 		String jws = Jwts.builder()
 				.setIssuer(issuer)
@@ -46,17 +80,12 @@ class JWTHandllerImpTest {
 				.signWith(key)
 				.compact();
 		
+		
+		
 		// peak
 		System.out.println(jws);
-	}
-	@Test
-	public void ¸¸µçJWTÆÄ½ÌÅ×½ºÆ®() {
-		//given
-		String jws = "eyJpc3MiOiJwcGwiLCJzdWIiOiJBdXRoIiwiYXVkIjoidGVzdFVzZXIxIiwiZXhwIjoxNjkzMjk5NjMwLCJuYmYiOjE2OTMyMTMyMzAsImlhdCI6MTY5MzIxMzIzMCwianRpIjoiNzA3MjQ2YTMtMmEyNC00MWE5LTgxNGItZTdlYThiMjVmM2ZlIn0";
 		
-				
-		//when
-		JwtParser jwtSubject = Jwts.parserBuilder().setSigningKey(Base64.getDecoder().decode())
+		JwtParser jwtSubject = Jwts.parserBuilder().setSigningKey(Base64.getDecoder().decode(encodedKey))
 				.build();
 		Claims parseClaimsJws = jwtSubject.parseClaimsJws(jws).getBody();
 		
@@ -68,7 +97,7 @@ class JWTHandllerImpTest {
 		assertDoesNotThrow(()->parseClaimsJws.getNotBefore().toInstant().getEpochSecond());
 		assertDoesNotThrow(()->parseClaimsJws.getIssuedAt().toInstant().getEpochSecond());
 		assertDoesNotThrow(()->UUID.fromString(parseClaimsJws.getId()));
-		
 	}
+	
 
 }
