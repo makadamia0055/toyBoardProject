@@ -17,6 +17,8 @@
 	
 	<!-- properties 파일 등록 -->
 	<context:property-placeholder location="classpath:properties/db.properties"/>
+	<context:property-placeholder location="classpath:properties/redis.properties"/>
+	
 	
 	<!-- aop 스캔 등록 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
@@ -60,5 +62,19 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	
 	</bean>
+	
+	<bean id="redisConfiguration" class="org.springframework.data.redis.connection.RedisStandaloneConfiguration">
+		<property name="hostName" value="${redis.hostName}" />
+		<property name="port" value="${redis.port}" />
+	</bean>
+	
+	<bean id="lettuceConnectionFactory" class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory">
+		<constructor-arg name="configuration" ref="redisConfiguration"/>
+	</bean>
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="lettuceConnectionFactory" />
+	</bean>
+	<!-- 캐시 매니저 설정은 나중에 -->
+	
 	
 </beans>
