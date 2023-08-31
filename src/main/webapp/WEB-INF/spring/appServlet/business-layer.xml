@@ -79,10 +79,10 @@
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="redisConnectionFactory" />
 	</bean> 
-	<bean class="org.springframework.data.redis.repository.support.RedisRepositoryFactoryBean">
+	<!-- <bean class="org.springframework.data.redis.repository.support.RedisRepositoryFactoryBean">
 		<constructor-arg name="repositoryInterface" value="com.ppl.toyboard.root.dao.RedisDAO"/>
 	
-	</bean>
+	</bean> -->
 	
 	<!-- 캐시 매니저 설정은 나중에 -->
 	
