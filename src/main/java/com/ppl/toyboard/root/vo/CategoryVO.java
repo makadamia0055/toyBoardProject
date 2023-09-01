@@ -2,25 +2,19 @@ package com.ppl.toyboard.root.vo;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "ct_category")
-@Data
+@Getter
+@AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class CategoryVO {
-	@Id
-	@GeneratedValue
+	
 	private int ct_num;
 	private String ct_name;
 
-	@OneToMany(mappedBy = "category")
 	private List<BoardVO> boardList;
 }

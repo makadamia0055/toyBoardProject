@@ -2,46 +2,25 @@ package com.ppl.toyboard.root.vo;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="cm_comment")
-@Data
+@Getter
+@AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class CommentVO {
-	@Id
-	@GeneratedValue
+	
 	private int cm_num;
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date cm_date;
 	private String cm_content;
 	private int cm_state;
 	
-	@ManyToOne
-	@JoinColumn(name="cm_bo_num")
-	private BoardVO board;
 	
-	@ManyToOne
-	@JoinColumn(name="cm_us_id")
+	private BoardVO board;
 	private UserVO user;
 	
-	public void setBoard(BoardVO board) {
-		this.board = board;
-		board.getCommentList().add(this);
-	}
 	
-	public void setUser(UserVO user) {
-		this.user = user;
-		user.getCommentList().add(this);
-	}
 }
