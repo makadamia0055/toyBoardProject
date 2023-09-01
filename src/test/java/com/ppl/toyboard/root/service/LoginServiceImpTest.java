@@ -25,11 +25,8 @@ class LoginServiceImpTest {
 	
 	@BeforeEach
 	void insertDefaultUser() {
-		UserVO user1 = new UserVO();
-		user1.setUs_id("abc123");
-		user1.setUs_pw("abc123pw");
-		user1.setUs_nickname("abc123");
-		user1.setUs_auth(1);
+		UserVO user1 = new UserVO("abc123", "abc123pw", "abc123name", 1);
+	
 		
 		loginService.insertUser(user1);
 		
