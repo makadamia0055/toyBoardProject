@@ -6,10 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
-import com.ppl.toyboard.root.vo.UserVO;
+import com.ppl.toyboard.root.entity.User;
 
 
 @Repository
@@ -22,36 +21,36 @@ public class LoginDAOJpa implements LoginDAO {
 	 */
 	@Transactional
 	@Override
-	public UserVO getUser(UserVO user) {
-		return (UserVO) em.find(UserVO.class, user.getUs_id());
+	public User getUser(User user) {
+		return (User) em.find(User.class, user.getUs_id());
 	}
 	/**
 	 * 
 	 */
 	@Transactional
 	@Override
-	public void insertUser(UserVO user) {
+	public void insertUser(User user) {
 		em.persist(user);
 	}
 	@Transactional
 	@Override
 	public void deleteAllUser() {
-		List<UserVO> list = getAllUser();
-		for(UserVO tmp : list) {
+		List<User> list = getAllUser();
+		for(User tmp : list) {
 			em.remove(tmp);
 		}
 	}
 	@Transactional
 	@Override
 	public int countAllUser() {
-		List<UserVO> list = getAllUser();
+		List<User> list = getAllUser();
 		return list.size();
 	}
 	@Transactional
 	@Override
-	public List<UserVO> getAllUser() {
+	public List<User> getAllUser() {
 		String jpql = "select u from UserVO u order by u.us_id desc";
-		List<UserVO> list = em.createQuery(jpql, UserVO.class).getResultList();
+		List<User> list = em.createQuery(jpql, User.class).getResultList();
 		return list;
 	}
 

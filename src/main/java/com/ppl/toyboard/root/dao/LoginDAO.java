@@ -2,15 +2,15 @@ package com.ppl.toyboard.root.dao;
 
 import java.util.List;
 
-import com.ppl.toyboard.root.vo.UserVO;
+import com.ppl.toyboard.root.entity.User;
 
 public interface LoginDAO {
 
-	UserVO getUser(UserVO user);
+	User getUser(User user);
 	
-	void insertUser(UserVO user);
+	void insertUser(User user);
 
-	List<UserVO> getAllUser();
+	List<User> getAllUser();
 	
 	void deleteAllUser();
 

@@ -27,12 +27,5 @@ public class BoardVO {
 	private CategoryVO category;
 	
 	
-	public int getBoardVote() {
-		int sum = 0;
-		for(BoardVoteVO tmp : this.boardVoteList) {
-			sum+=tmp.getBv_state();
-		}
-		return sum;
-	}
 	
 }

@@ -33,11 +33,8 @@ class LoginServiceImpTest {
 	}
 	@BeforeEach
 	void 테스트객체생성() {
-		this.user2 = new UserVO();
-		user2.setUs_id("mak123id");
-		user2.setUs_pw("mak123pw");
-		user2.setUs_nickname("maknick");
-		user2.setUs_auth(1);
+		this.user2 = new UserVO("mak123id", "mak123pw", "maknick", 1);
+		
 	}
 	@AfterEach
 	void deleteAllUser() {
@@ -58,8 +55,8 @@ class LoginServiceImpTest {
 	@Test
 	void testGetUser() {
 		//given
-		UserVO user = new UserVO();
-		user.setUs_id("abc123");
+		UserVO user = new UserVO("abc123", null, null, 1);
+		
 		//when
 		UserVO findUser = loginService.getUser(user);
 		//then
@@ -68,8 +65,8 @@ class LoginServiceImpTest {
 	@Test
 	void turncateUserVO() {
 		//given
-		UserVO user = new UserVO();
-		user.setUs_id("abc123");
+		UserVO user = new UserVO("abc123", null, null, 1);
+		
 		//when
 		loginService.deleteAllUser();
 		//then

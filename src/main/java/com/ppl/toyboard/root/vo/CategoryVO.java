@@ -16,5 +16,5 @@ public class CategoryVO {
 	private int ct_num;
 	private String ct_name;
 
-	private List<BoardVO> boardList;
+	
 }

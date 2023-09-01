@@ -16,10 +16,10 @@ public class LoginServiceImp implements LoginService {
 		this.loginDao = loginDao;
 	}
 	
-	// ÇöÀç´Â ±×³É booleanÀ¸·Î Ã³¸®ÇÏ´Âµ¥ ³ªÁß¿¡ ¿¡·¯ ÄÚµå Ã³¸®¹æ¹ý ¹è¿ì¸é ´Ù¸£°Ô ±¸ÇöÇÒ °Í.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ booleanï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´Âµï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
 	@Override
 	public boolean insertUser(UserVO user) {
-		//validation Ã¼Å©´Â ³ªÁß¿¡ 
+		//validation Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ 
 		if(getUser(user)!=null) {
 			return false;
 		}

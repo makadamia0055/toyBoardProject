@@ -15,5 +15,4 @@ public class TagVO {
 	
 	private int tg_tagnum;
 	private String tg_tagname;
-	private List<BoardTagsVO> boardTagsList;
 }
