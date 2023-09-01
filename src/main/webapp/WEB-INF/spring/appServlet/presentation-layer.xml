@@ -28,6 +28,13 @@
 	<beans:bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
 		<beans:property name="templateResolver" ref="templateResolver" />
 		<beans:property name="enableSpringELCompiler" value="true"/>
+		<beans:property name="additionalDialects">
+			<beans:set>
+				<!-- Thymeleaf Layout Dialect Configuration -->
+				<beans:bean class="nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect" />
+	
+			</beans:set>
+		</beans:property>
 	</beans:bean>
 	
 	<!-- 뷰 Resolver -->
@@ -37,11 +44,11 @@
 	  <beans:property name="order" value="1" />
 	  <beans:property name="viewNames" value="*.html,*.xhtml" />
 	  <beans:property name="characterEncoding" value="UTF-8" />
+	  <beans:property name="contentType" value="text/html;charset=UTF-8"/>
 	  
 	</beans:bean>
 		
 	<context:component-scan base-package="com.ppl.toyboard.controller" />
-	
 	
 	
 	

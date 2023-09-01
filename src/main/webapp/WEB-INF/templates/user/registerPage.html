@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>회원가입</title>
-</head>
-<body>
-    <h1>회원가입</h1>
-    <form action="/toyboard/user/register" method="post">
-        <label for="us_id">아이디:</label>
-        <input type="text" id="us_id" name="us_id" required><br><br>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
 
-        <label for="us_pw">비밀번호:</label>
-        <input type="password" id="us_pw" name="us_pw" required><br><br>
+    <!-- index.html 고유 CSS 추가 -->
+	<th:block layout:fragment="css">
+	    <!--    <link rel="stylesheet" th:href="@{/css/page/home.css}" >-->
+	</th:block>
+	<!-- index.html 고유 스크립트 추가 -->
+	<th:block layout:fragment="script">
+	    <!--    <script th:src="@{/js/page/home.js}"></script>-->
+	</th:block>
 
-        <label for="us_nickname">닉네임:</label>
-        <input type="text" id="us_nickname" name="us_nickname" required><br><br>
-
-        <input type="submit" value="회원가입">
-    </form>
-</body>
+	<div layout:fragment="content">
+	    <h1>회원가입</h1>
+		    <form action="/toyboard/user/register" method="post">
+		        <label for="us_id">아이디:</label>
+		        <input type="text" id="us_id" name="us_id" required><br><br>
+		
+		        <label for="us_pw">비밀번호:</label>
+		        <input type="password" id="us_pw" name="us_pw" required><br><br>
+		
+		        <label for="us_nickname">닉네임:</label>
+		        <input type="text" id="us_nickname" name="us_nickname" required><br><br>
+		
+		        <input type="submit" value="회원가입">
+		    </form>
+    </div>
 </html>

@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>게시글 작성</title>
-</head>
-<body>
-	<form th:href="@{/board}" action="POST">
-		<div>게시글 제목</div>
-		<input name="bo_title" type="text">
-		<div>카테고리</div>
-		<select name="bo_ct_num" th:each="category:${categoryList}">
-			<option th:value="${category.ct_num}" th:text="${category.ct_name}"></option>
-		</select>
-		<div>작성자</div>
-		<input name="bo_us_id" type="text" th:value="${user.us_nickname}">
-		<textarea rows="10" cols="10"></textarea>
-	
-	
-	
-	</form>
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+
+    <!-- index.html 고유 CSS 추가 -->
+	<th:block layout:fragment="css">
+	    <!--    <link rel="stylesheet" th:href="@{/css/page/home.css}" >-->
+	</th:block>
+	<!-- index.html 고유 스크립트 추가 -->
+	<th:block layout:fragment="script">
+	    <!--    <script th:src="@{/js/page/home.js}"></script>-->
+	</th:block>
+
+	<div layout:fragment="content">
+		<form th:href="@{/board}" action="POST">
+			<div>게시글 제목</div>
+			<input name="bo_title" type="text">
+			<div>카테고리</div>
+			<select name="bo_ct_num" th:each="category:${categoryList}">
+				<option th:value="${category.ct_num}" th:text="${category.ct_name}"></option>
+			</select>
+			<div>작성자</div>
+			<input name="bo_us_id" type="text" th:value="${user.us_nickname}">
+			<textarea rows="10" cols="10"></textarea>
+		
+		
+		
+		</form>
+	 </div>
 </html>
+		
