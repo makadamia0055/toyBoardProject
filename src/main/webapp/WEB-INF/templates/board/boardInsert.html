@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>게시글 작성</title>
+</head>
+<body>
+	<form th:href="@{/board}" action="POST">
+		<div>게시글 제목</div>
+		<input name="bo_title" type="text">
+		<div>카테고리</div>
+		<select name="bo_ct_num" th:each="category:${categoryList}">
+			<option th:value="${category.ct_num}" th:text="${category.ct_name}"></option>
+		</select>
+		<div>작성자</div>
+		<input name="bo_us_id" type="text" th:value="${user.us_nickname}">
+		<textarea rows="10" cols="10"></textarea>
+	
+	
+	
+	</form>
+</body>
+</html>

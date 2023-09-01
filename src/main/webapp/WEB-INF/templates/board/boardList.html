@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="EUC-KR">
 <title>게시판</title>
 </head>
 <body>
@@ -26,5 +25,8 @@
 			
 		</tr>
 	</table>
+	
+	<a th:href="@{/board/write}"><button>게시글 쓰기</button></a>
+	
 </body>
 </html>

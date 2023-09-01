@@ -24,6 +24,10 @@ public class BoardController {
 		return "board/boardList.html";
 	}
 	
+	@GetMapping("/write")
+	public String getBoardInsert(Model md) {
+		return "board/boardInsert.html";
+	}
 	
 	
 }
