@@ -29,10 +29,8 @@ public class BoardServiceImp implements BoardService {
         try {
             tx.begin();
 
-            // ∞‘Ω√±€ √ﬂ∞°
-            //∞¥√º π´∞·º∫ √º≈©∏¶ «ÿæﬂ«‘. πª∑Œ «“¡ˆ √£æ∆∫∏±‚.
+            //Í≤åÏãúÍ∏Ä Í≤ÄÏ¶ùÍ≥ºÏ†ï Ïù¥ÌõÑ Ï∂îÍ∞Ä
             
-            //
             em.persist(board);
 
             tx.commit();
@@ -45,7 +43,6 @@ public class BoardServiceImp implements BoardService {
             e.printStackTrace();
         } finally {
             em.close();
-            emf.close();
         }
 	}
 	public List<BoardVO> getBoardList(){
@@ -55,7 +52,7 @@ public class BoardServiceImp implements BoardService {
         try {
             tx.begin();
 
-        // ±€ ∏Ò∑œ ¡∂»∏
+        // 
         String jpql = "select b from BoardVO b order by b.bo_num desc";
         List<BoardVO> boardList = em.createQuery(jpql, BoardVO.class).getResultList();
         return boardList;
@@ -67,7 +64,6 @@ public class BoardServiceImp implements BoardService {
             return null;
         } finally {
             em.close();
-            emf.close();
         }
 	}
 }

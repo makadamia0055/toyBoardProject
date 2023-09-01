@@ -28,7 +28,6 @@ public class LoginController {
 	@PostMapping(path="/login")
 	public String postLogin(UserVO user) {
 		if(loginService.checkUser(user)) {
-			System.out.println("·Î±×ÀÎ Ã¼Å© ¼º°ø");
 			return "redirect:/";
 		}
 		return "redirect:/";
@@ -41,10 +40,10 @@ public class LoginController {
 	@PostMapping(path="/register")
 	public String postRegister(UserVO user) {
 		if(loginService.insertUser(user)) {
-			System.out.println("È¸¿ø°¡ÀÔ  ¼º°ø");
+			UserVO checkUser = loginService.getUser(user);
+			System.out.println(checkUser.getUs_nickname() + " ìœ ì € ê°€ìž… ì™„ë£Œ");
 			return "redirect:/";
 		}
-		System.out.println("È¸¿ø°¡ÀÔ ½ÇÆÐ");
 		return "redirect:/";
 	}
 	

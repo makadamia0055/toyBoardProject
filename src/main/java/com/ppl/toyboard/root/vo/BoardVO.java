@@ -29,6 +29,9 @@ public class BoardVO {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date bo_date;
 	private int bo_state;
+	private int bo_view;
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name="bo_us_id")
@@ -62,6 +65,13 @@ public class BoardVO {
 		this.category = category;
 		category.getBoardList().add(this);
 		
+	}
+	public int getBoardVote() {
+		int sum = 0;
+		for(BoardVoteVO tmp : this.boardVoteList) {
+			sum+=tmp.getBv_state();
+		}
+		return sum;
 	}
 	
 }

@@ -18,7 +18,7 @@ public class BoardVoteVO {
 	@Id
 	@GeneratedValue
 	private int bv_num;
-	private boolean bv_state;
+	private int bv_state;
 	
 	@ManyToOne
 	@JoinColumn(name="bv_bo_num")
