@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,6 +33,17 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<BoardVote> boardVoteList;
 
+	@Builder
+	User(String us_id, String us_pw, String us_nickname, int us_auth){
+		this.us_id = us_id;
+		this.us_pw = us_pw;
+		this.us_nickname = us_pw;
+		this.us_auth = us_auth;
+	}
+	
+	
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -11,21 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.ppl.toyboard.root.dto.RegisterUserDTO;
 import com.ppl.toyboard.root.vo.UserVO;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations= "classpath:test-Business-layer.xml")
-class LoginServiceImpTest {
+class UserServiceImpTest {
 
 	@Autowired
-	private LoginService loginService;
+	private UserService loginService;
 	
-	private UserVO user2;
+	private RegisterUserDTO user2;
 
 	
 	@BeforeEach
 	void insertDefaultUser() {
-		UserVO user1 = new UserVO("abc123", "abc123pw", "abc123name", 1);
+		RegisterUserDTO user1 = RegisterUserDTO.builder()
+				.us_id("abc123")
+				.us_pw("abc123pw")
+				.us_nickname("abc123name")
+				.build();
 	
 		
 		loginService.insertUser(user1);
@@ -33,7 +38,11 @@ class LoginServiceImpTest {
 	}
 	@BeforeEach
 	void 테스트객체생성() {
-		this.user2 = new UserVO("mak123id", "mak123pw", "maknick", 1);
+		this.user2 = RegisterUserDTO.builder()
+				.us_id("mak123")
+				.us_pw("mak123pw")
+				.us_nickname("mak123name")
+				.build();
 		
 	}
 	@AfterEach
@@ -44,12 +53,11 @@ class LoginServiceImpTest {
 	@Test
 	void testInsertUser() {
 		//given
-		assertNull(loginService.getUser(user2));
+		assertNull(loginService.getUser(new UserVO(user2.getUs_id(), null, null, 0)));
 		//when
 		loginService.insertUser(user2);
 		//then
-		UserVO findUser = loginService.getUser(user2);
-		assertEquals(user2.getUs_id(), findUser.getUs_id());
+		assertEquals(user2.getUs_id(), loginService.getUser(new UserVO(user2.getUs_id(), null, null, 0)).getUs_id());
 	}
 
 	@Test

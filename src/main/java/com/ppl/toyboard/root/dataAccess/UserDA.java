@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.ppl.toyboard.root.entity.User;
 
-public interface LoginDA {
+public interface UserDA {
 
-	User getUser(User user);
+	User getUser(String user);
 	
 	void insertUser(User user);
 
@@ -15,5 +15,8 @@ public interface LoginDA {
 	void deleteAllUser();
 
 	int countAllUser();
+
+	boolean isNickNameDuplicated(String us_nickname);
+
 
 }

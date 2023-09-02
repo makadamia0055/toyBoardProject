@@ -10,29 +10,29 @@ import org.springframework.stereotype.Repository;
 
 import com.ppl.toyboard.root.entity.User;
 
-
+@Transactional
 @Repository
-public class LoginRepository implements LoginDA {
+public class UserRepository implements UserDA {
 	@PersistenceContext
 	private EntityManager em;
 	
 	/**
 	 * 
 	 */
-	@Transactional
-	@Override
-	public User getUser(User user) {
-		return (User) em.find(User.class, user.getUs_id());
+	
+	@Override // VO로 처리하다가 DTO 도입이후 매개변수 String으로 변경
+	public User getUser(String user_id) {
+		return (User) em.find(User.class, user_id);
 	}
 	/**
 	 * 
 	 */
-	@Transactional
+	
 	@Override
 	public void insertUser(User user) {
 		em.persist(user);
 	}
-	@Transactional
+	
 	@Override
 	public void deleteAllUser() {
 		List<User> list = getAllUser();
@@ -40,18 +40,27 @@ public class LoginRepository implements LoginDA {
 			em.remove(tmp);
 		}
 	}
-	@Transactional
+	
 	@Override
 	public int countAllUser() {
 		List<User> list = getAllUser();
 		return list.size();
 	}
-	@Transactional
+	
 	@Override
 	public List<User> getAllUser() {
-		String jpql = "select u from UserVO u order by u.us_id desc";
+		String jpql = "select u from User u order by u.us_id desc";
 		List<User> list = em.createQuery(jpql, User.class).getResultList();
 		return list;
+	}
+	@Override
+	public boolean isNickNameDuplicated(String us_nickname) {
+		String jpql = "select count(u) from User u where u.us_nickname = :nickname";
+		Integer rst = (Integer)em.createQuery(jpql).setParameter("nickname", us_nickname).getSingleResult();
+		if(rst>0) {
+			return false;
+		}
+		return true;
 	}
 
 }

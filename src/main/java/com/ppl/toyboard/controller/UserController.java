@@ -7,16 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ppl.toyboard.root.service.LoginService;
+import com.ppl.toyboard.root.dto.LoginUserDTO;
+import com.ppl.toyboard.root.dto.RegisterUserDTO;
+import com.ppl.toyboard.root.service.UserService;
 import com.ppl.toyboard.root.vo.UserVO;
 
 @Controller
 @RequestMapping(value="/user")
-public class LoginController {
-	private LoginService loginService;
+public class UserController {
+	private UserService loginService;
 	
 	@Autowired
-	public LoginController(LoginService loginService) {
+	public UserController(UserService loginService) {
 		this.loginService = loginService;
 	}
 	
@@ -26,8 +28,8 @@ public class LoginController {
 	    return "user/loginPage.html";
 	}
 	@PostMapping(path="/login")
-	public String postLogin(UserVO user) {
-		if(loginService.checkUser(user)) {
+	public String postLogin(LoginUserDTO userDto) {
+		if(loginService.checkUser(userDto)) {
 			return "redirect:/";
 		}
 		return "redirect:/";
@@ -38,10 +40,10 @@ public class LoginController {
 	    return "user/registerPage.html";
 	}
 	@PostMapping(path="/register")
-	public String postRegister(UserVO user) {
-		if(loginService.insertUser(user)) {
-			UserVO checkUser = loginService.getUser(user);
-			System.out.println(checkUser.getUs_nickname() + " 유저 가입 완료");
+	public String postRegister(RegisterUserDTO userDto) {
+		if(loginService.insertUser(userDto)) {
+//			UserVO checkUser = loginService.getUser(userDto);
+			System.out.println(" 유저 가입 완료");
 			return "redirect:/";
 		}
 		return "redirect:/";
