@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ppl.toyboard.root.dto.LoginUserDTO;
 import com.ppl.toyboard.root.dto.RegisterUserDTO;
 import com.ppl.toyboard.root.service.UserService;
-import com.ppl.toyboard.root.vo.UserVO;
 
 @Controller
 @RequestMapping(value="/user")

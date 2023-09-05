@@ -50,7 +50,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
  		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"></property>
-		<property name="packagesToScan" value="com.ppl.toyboard.root.vo"></property>
+		<property name="packagesToScan" value="com.ppl.toyboard.root.entity"></property>
 		
 	</bean>
 	

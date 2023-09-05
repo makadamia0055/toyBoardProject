@@ -56,11 +56,12 @@ public class UserRepository implements UserDA {
 	@Override
 	public boolean isNickNameDuplicated(String us_nickname) {
 		String jpql = "select count(u) from User u where u.us_nickname = :nickname";
-		Integer rst = (Integer)em.createQuery(jpql).setParameter("nickname", us_nickname).getSingleResult();
-		if(rst>0) {
-			return false;
+		if((long)em.createQuery(jpql).setParameter("nickname", us_nickname).getSingleResult()>0) {
+			return true;
 		}
-		return true;
+		
+		
+		return false;
 	}
 
 }

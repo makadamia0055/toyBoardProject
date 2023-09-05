@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ppl.toyboard.root.entity.Board;
 import com.ppl.toyboard.root.vo.BoardVO;
 
 @Service
@@ -21,7 +22,7 @@ public class BoardServiceImp implements BoardService {
 		this.emf = emf;
 	}
 	
-	public void insertBoard(BoardVO board) {
+	public void insertBoard(Board board) {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -45,7 +46,7 @@ public class BoardServiceImp implements BoardService {
             em.close();
         }
 	}
-	public List<BoardVO> getBoardList(){
+	public List<Board> getBoardList(){
 		EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
 
@@ -53,8 +54,8 @@ public class BoardServiceImp implements BoardService {
             tx.begin();
 
         // 
-        String jpql = "select b from BoardVO b order by b.bo_num desc";
-        List<BoardVO> boardList = em.createQuery(jpql, BoardVO.class).getResultList();
+        String jpql = "select b from Board b order by b.bo_num desc";
+        List<Board> boardList = em.createQuery(jpql, Board.class).getResultList();
         return boardList;
         } catch (Exception e) {
             if (tx != null && tx.isActive()) {

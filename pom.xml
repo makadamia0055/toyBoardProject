@@ -119,7 +119,7 @@
 		</dependency>
 	
 		<!-- Test -->
-		 <dependency>
+		<dependency>
 	        <groupId>org.junit.platform</groupId>
 	        <artifactId>junit-platform-launcher</artifactId>
 	        <scope>test</scope>
