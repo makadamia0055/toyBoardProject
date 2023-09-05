@@ -14,10 +14,10 @@ public interface UserMapper {
 	
 	User toEntity(LoginUserDTO userDTO);
 	
-	/*
-	 * User toEntity(RegisterUserDTO userDTO);
-	 * 
-	 * User toEntity(UserVO userVO);
-	 */
+	User toEntity(RegisterUserDTO userDTO);
+	  
+	User toEntity(UserVO userVO);
+	
+	
 	
 }

@@ -7,6 +7,7 @@ import com.ppl.toyboard.root.dataAccess.UserDA;
 import com.ppl.toyboard.root.dto.LoginUserDTO;
 import com.ppl.toyboard.root.dto.RegisterUserDTO;
 import com.ppl.toyboard.root.entity.User;
+import com.ppl.toyboard.root.mapStruct.UserMapper;
 import com.ppl.toyboard.root.vo.UserVO;
 
 @Service
@@ -52,11 +53,13 @@ public class UserServiceImp implements UserService {
 	
 	@Override
 	public boolean checkUser(LoginUserDTO user) {
+		User mapperUser = UserMapper.INSTANCE.toEntity(user);
+		System.out.println(mapperUser.getUs_nickname());
 		User dbUser = loginDA.getUser(user.getUs_id());
-		if(dbUser.getUs_id().equals(user.getUs_id())) {
-			return true;
+		if(dbUser ==null||!dbUser.getUs_id().equals(user.getUs_id())) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
