@@ -3,20 +3,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default_layout}">
 
-    <!-- index.html °íÀ¯ CSS Ãß°¡ -->
+    <!-- index.html -->
 	<th:block layout:fragment="css">
 	    <!--    <link rel="stylesheet" th:href="@{/css/page/home.css}" >-->
 	</th:block>
-	<!-- index.html °íÀ¯ ½ºÅ©¸³Æ® Ãß°¡ -->
+	<!-- index.html  -->
 	<th:block layout:fragment="script">
 	    <!--    <script th:src="@{/js/page/home.js}"></script>-->
 	</th:block>
 
 	<div layout:fragment="content">
-	   <a th:href="@{/user/login}">·Î±×ÀÎ</a>
+	   <a th:href="@{/user/login}">ë¡œê·¸ì¸</a>
 	
-		<a th:href="@{/user/register}">È¸¿ø°¡ÀÔ</a>
+		<a th:href="@{/user/register}">íšŒì›ê°€ìž…</a>
 		
-		<a th:href="@{/board/list}">°Ô½ÃÆÇ</a>
+		<a th:href="@{/board/list}">ê²Œì‹œíŒ</a>
     </div>
 </html>

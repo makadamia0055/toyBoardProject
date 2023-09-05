@@ -3,11 +3,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default_layout}">
 
-    <!-- index.html ���� CSS �߰� -->
+    <!-- index.html 고유 CSS 추가 -->
 	<th:block layout:fragment="css">
 	    <!--    <link rel="stylesheet" th:href="@{/css/page/home.css}" >-->
 	</th:block>
-	<!-- index.html ���� ��ũ��Ʈ �߰� -->
+	<!-- index.html 고유 스크립트 추가 -->
 	<th:block layout:fragment="script">
 	    <!--    <script th:src="@{/js/page/home.js}"></script>-->
 	</th:block>
@@ -15,17 +15,17 @@
 	<div layout:fragment="content">
 	   <table>
 		<tr>
-			<th>��ȣ</th>
-			<th>����</th>
-			<th>�ۼ���</th>
-			<th>�ۼ���</th>
-			<th>��ȸ��</th>
-			<th>��õ��</th>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
+			<th>추천수</th>
 		</tr>
 		<tr th:each="item:${boardList}">
 			<td th:text="${item.bo_num}"></td>
 			<td>
-				<a href="board.html" th:href="@{/board/{boardId}(boardId=${item.bo_num})}" th:text="${item.bo_title}">�Խñ� ����</a>
+				<a href="board.html" th:href="@{/board/{boardId}(boardId=${item.bo_num})}" th:text="${item.bo_title}">게시글 제목</a>
 			</td>
 			<td th:text="${item.user.us_nickname}"></td>
 			<td th:text="${item.bo_date}"></td>
@@ -35,7 +35,7 @@
 		</tr>
 	</table>
 	
-	<a th:href="@{/board/write}"><button>�Խñ� ����</button></a>
+	<a th:href="@{/board/write}"><button>게시글 쓰기</button></a>
 	
     </div>
 </html>
