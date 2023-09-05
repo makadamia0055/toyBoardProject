@@ -3,8 +3,6 @@ package com.ppl.toyboard.root.common;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import javax.persistence.Entity;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,7 +26,7 @@ public class MapStructTest {
 		User entityUser = UserMapper.INSTANCE.toEntity(loginUserDto);
 		assertEquals("mak123", entityUser.getUs_id());
 		assertEquals("mak123Pw", entityUser.getUs_pw());
-		assertTrue(entityUser instanceof Entity);
+		
 	}
 	
 }
