@@ -1,70 +1,46 @@
 package com.ppl.toyboard.root.service;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ppl.toyboard.root.dataAccess.BoardDA;
+import com.ppl.toyboard.root.dto.BoardListDTO;
+import com.ppl.toyboard.root.dto.InsertBoardDTO;
 import com.ppl.toyboard.root.entity.Board;
+import com.ppl.toyboard.root.mapStruct.BoardMapper;
 import com.ppl.toyboard.root.vo.BoardVO;
 
 @Service
 public class BoardServiceImp implements BoardService {
 	
-	EntityManagerFactory emf;
+	BoardDA boardDa;
 	
 	@Autowired
-	public BoardServiceImp(EntityManagerFactory emf) {
-		this.emf = emf;
+	public BoardServiceImp(BoardDA boardDa) {
+		this.boardDa = boardDa;
 	}
-	
-	public void insertBoard(Board board) {
-
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-
-        try {
-            tx.begin();
-
-            //게시글 검증과정 이후 추가
-            
-            em.persist(board);
-
-            tx.commit();
-
-
-        } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            em.close();
-        }
+	@Override
+	public void insertBoard(InsertBoardDTO boardDto) {
+		//validation 나중에 추가
+		boardDa.insertBoard(boardDto);
+        
 	}
-	public List<Board> getBoardList(){
-		EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-
-        try {
-            tx.begin();
-
-        // 
-        String jpql = "select b from Board b order by b.bo_num desc";
-        List<Board> boardList = em.createQuery(jpql, Board.class).getResultList();
-        return boardList;
-        } catch (Exception e) {
-            if (tx != null && tx.isActive()) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-            return null;
-        } finally {
-            em.close();
-        }
+	@Override
+	public BoardListDTO getBoardList(){
+		List<Board> entityList = boardDa.getBoardList();
+		
+		List<BoardVO> boardList = new ArrayList<BoardVO>();
+		for(Board tmp: entityList) {
+			boardList.add(BoardMapper.INSTANCE.toVO(tmp));
+		}
+		
+		BoardListDTO blDto = new BoardListDTO();
+		blDto.setBoardList(boardList);
+		return blDto;
+        
+       
 	}
 }

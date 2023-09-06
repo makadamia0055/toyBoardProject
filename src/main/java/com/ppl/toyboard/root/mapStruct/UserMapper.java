@@ -18,6 +18,4 @@ public interface UserMapper {
 	  
 	User toEntity(UserVO userVO);
 	
-	
-	
 }
