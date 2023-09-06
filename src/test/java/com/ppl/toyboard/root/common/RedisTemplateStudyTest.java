@@ -16,7 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations= "classpath:test-Business-layer.xml")
-public class RedisConnectionTest {
+public class RedisTemplateStudyTest {
 	
 	 @Autowired
 	    private StringRedisTemplate redisTemplate;
