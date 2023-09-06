@@ -53,12 +53,13 @@ public class UserServiceImp implements UserService {
 	
 	@Override
 	public boolean checkUser(LoginUserDTO user) {
-		User mapperUser = UserMapper.INSTANCE.toEntity(user);
-		System.out.println(mapperUser.getUs_nickname());
+		//User mapperUser = UserMapper.INSTANCE.toEntity(user);
 		User dbUser = loginDA.getUser(user.getUs_id());
-		if(dbUser ==null||!dbUser.getUs_id().equals(user.getUs_id())) {
+		if(dbUser ==null||!dbUser.getUs_id().equals(user.getUs_id())||!dbUser.getUs_pw().equals(user.getUs_pw())) {
+			System.out.println("로그인 시도 실패");
 			return false;
 		}
+		System.out.println(dbUser.getUs_nickname() + " 유저 로그인 성공");
 		return true;
 	}
 
