@@ -26,6 +26,7 @@ public class JWTHandllerImp implements JWTHandller {
 	
 	
 	private void setKey() {
+		// 서버 초기화하면 인증키 바꾼다
 		key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 		encodedKey = Base64.getEncoder().encodeToString(key.getEncoded());
 	}
