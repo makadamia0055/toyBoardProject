@@ -23,6 +23,7 @@ public class User {
 	private String us_pw;
 	private String us_nickname;
 	private int us_auth;
+	private String us_refreshToken;
 	
 	@OneToMany(mappedBy = "user")
 	private List<Board> boardList;
@@ -41,9 +42,6 @@ public class User {
 		this.us_auth = us_auth;
 	}
 	
-	
-	
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,7 +53,10 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(us_id, other.us_id) && Objects.equals(us_pw, other.us_pw);
 	}
-
+	
+	public void updateRefreshToken(String refreshToken) {
+		this.us_refreshToken = refreshToken;
+	}
 	
 	
 }
