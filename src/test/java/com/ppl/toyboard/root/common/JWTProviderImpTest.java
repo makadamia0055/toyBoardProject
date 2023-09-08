@@ -24,14 +24,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
-class JWTHandllerImpTest {
+class JWTProviderImpTest {
 	private static Key key;
 	private static String encodedKey;
-	private static JWTHandller jwtHandler;
+	private static JWTProvider jwtHandler;
 	
 	@BeforeAll
 	static void jwtHandler초기화() {
-		jwtHandler = new JWTHandllerImp();
+		jwtHandler = new JWTProviderImp();
 	}
 	
 	
@@ -112,13 +112,13 @@ class JWTHandllerImpTest {
 	@Test 
 	void JWTHandlerTest() {
 		UserVO user = new UserVO("mak123", "mak123", "mak123", 0);
-		Claims claim = jwtHandler.setClaims(user);
+		Claims claim = jwtHandler.setClaims(user.getUs_id());
 		String token = jwtHandler.createToken(claim, Date.from(Instant.now().plus(Duration.ofHours(1))));
 		Claims parseClaim = jwtHandler.getClaims(token);
 		assertEquals(claim, parseClaim);
 		
 		UserVO user2 = new UserVO("asd123", "asd123", null, 0);
-		Claims claim2 = jwtHandler.setClaims(user2);
+		Claims claim2 = jwtHandler.setClaims(user2.getUs_id());
 		assertNotEquals(parseClaim, claim2);
 		
 	}

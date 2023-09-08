@@ -247,7 +247,20 @@
 	        <version>${org.mapstruct.version}</version>
 	        <scope>provided</scope>
    		</dependency>
-		
+   		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.12.3</version>
+		</dependency>
+				
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-core</artifactId>
+		    <version>4.11.0</version>
+		    <scope>test</scope>
+		</dependency>
 
 	</dependencies>
 	<!-- junit 의존성 버전관리 -->

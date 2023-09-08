@@ -1,5 +1,7 @@
 package com.ppl.toyboard.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ppl.toyboard.root.dto.LoginUserDTO;
 import com.ppl.toyboard.root.dto.RegisterUserDTO;
 import com.ppl.toyboard.root.service.UserService;
 
@@ -26,13 +27,18 @@ public class UserController {
 	public String getLogin(Model model) {
 	    return "user/loginPage.html";
 	}
+//	@PostMapping(path="/login")
+//	public String postLogin(LoginUserDTO userDto) {
+//		if(loginService.checkUser(userDto)) {
+//			return "redirect:/";
+//		}
+//		return "redirect:/";
+//	}
 	@PostMapping(path="/login")
-	public String postLogin(LoginUserDTO userDto) {
-		if(loginService.checkUser(userDto)) {
-			return "redirect:/";
-		}
-		return "redirect:/";
+	public String postLogin(HttpServletResponse response) {
+		return "index.html";
 	}
+	
 	
 	@GetMapping(path="/register")
 	public String getRegister(Model model) {

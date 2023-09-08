@@ -1,11 +1,11 @@
 package com.ppl.toyboard.root.service;
 
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -14,7 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ppl.toyboard.root.dto.LoginUserDTO;
 import com.ppl.toyboard.root.dto.RegisterUserDTO;
+import com.ppl.toyboard.root.dto.UserVerifyResponseDTO;
 import com.ppl.toyboard.root.vo.UserVO;
 
 @ExtendWith(SpringExtension.class)
@@ -99,6 +101,15 @@ class UserServiceImpTest {
 		
 		loginService.deleteAllUser();
 		assertEquals(0, loginService.countAllUser());
+	}
+	@Test
+	void 유저체크() {
+		// given
+		LoginUserDTO loginUserDto = new LoginUserDTO();
+		loginUserDto.setUs_id("abc123");
+		loginUserDto.setUs_pw("abc123pw");
+		UserVerifyResponseDTO rst = loginService.checkUser(loginUserDto);
+		assertTrue(rst.isVaild());
 	}
 
 }

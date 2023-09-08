@@ -23,7 +23,6 @@ public class User {
 	private String us_pw;
 	private String us_nickname;
 	private int us_auth;
-	private String us_refreshToken;
 	
 	@OneToMany(mappedBy = "user")
 	private List<Board> boardList;
