@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +35,13 @@ public class VerifyUserFilter implements Filter {
     
     private UserService userService;
     
+    
     // Component와 RequireArgsConstructor가 있으면 Autowired가 없어도 자동 DI된다고 함. 
+    @Autowired
+    VerifyUserFilter(ObjectMapper objectMapper, UserService userService){
+    	this.objectMapper = objectMapper;
+    	this.userService = userService;
+    }
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -50,7 +57,15 @@ public class VerifyUserFilter implements Filter {
 		if((httpServletRequest.getMethod().equals("POST"))) {
 			try {
 				// 오브젝트 매핑
-				LoginUserDTO loginUserDto = objectMapper.readValue(request.getReader(), LoginUserDTO.class);
+				LoginUserDTO loginUserDto = new LoginUserDTO();
+				String id = (String)httpServletRequest.getAttribute("username");
+				String pw = (String)httpServletRequest.getAttribute("password");
+				System.out.println(id+pw);
+				loginUserDto.setUs_id(id);
+				loginUserDto.setUs_pw(pw);
+
+				
+				//LoginUserDTO loginUserDto = objectMapper.readValue(request.getReader(), LoginUserDTO.class);
 				// Login을 위한 DTO -> verify를 위한 DTO -> 인증완료를 알리는 User DTO를 넘기는 과정
 				UserVerifyResponseDTO verifyResponse = userService.checkUser(loginUserDto);
 				if(verifyResponse.isVaild()) {

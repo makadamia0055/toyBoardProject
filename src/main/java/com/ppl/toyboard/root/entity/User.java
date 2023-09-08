@@ -53,9 +53,6 @@ public class User {
 		return Objects.equals(us_id, other.us_id) && Objects.equals(us_pw, other.us_pw);
 	}
 	
-	public void updateRefreshToken(String refreshToken) {
-		this.us_refreshToken = refreshToken;
-	}
 	
 	
 }

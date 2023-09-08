@@ -87,6 +87,8 @@
 	<!-- 캐시 매니저 설정은 나중에 -->
 	
 	<!-- 필터 등록 -->
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+	
 	<bean id="VerifyUserFilter" class="com.ppl.toyboard.root.filter.VerifyUserFilter" />
 	
 	<bean id="JwtFilter" class="com.ppl.toyboard.root.filter.JwtFilter" />
